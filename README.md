@@ -1,4 +1,4 @@
-Gator
+Gator Translator
 =====
 
-Generic Android Apps
+App to translate from malayalam to english and vice versa.
