@@ -24,6 +24,11 @@ public class DisplayMessageActivity extends ActionBarActivity {
 		// Create the text view
 		TextView textView = new TextView(this);
 		textView.setTextSize(40);
+
+		// Implement the dictionary to transform the words here.
+		if (message.equals("today")) {
+			message = "tomorrow";
+		}
 		textView.setText(message);
 
 		// Set the text view as the activity layout
