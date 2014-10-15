@@ -10,9 +10,10 @@
 	Read a File or Store Statically? Read file!
 	Should all the data be loaded from the file at start up or look up as necessary? look up as necessary sounds like a better idea!
 	
-# Dictionary Class
-	enum type of malayalam or english.
-	based on that look up different sets.
+# Translator Class
+	enum type of malayalam or english. done
+	based on that look up different data. 
+	Method to read data from a file.
 	
 # Limitations
 	Only can translate one word at a time.
