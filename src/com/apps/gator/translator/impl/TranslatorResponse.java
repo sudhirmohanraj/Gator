@@ -1,5 +1,16 @@
 package com.apps.gator.translator.impl;
 
+import com.apps.gator.translator.Translator;
+
+/**
+ * Response for the {@link Translator}
+ * <ol>
+ * A String containing the translated output.
+ * </ol>
+ * 
+ * @author sudhir mohanraj
+ * 
+ */
 public class TranslatorResponse {
 
 	String lookupResponse;
