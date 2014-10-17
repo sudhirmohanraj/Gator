@@ -20,16 +20,19 @@ public class ReadFile {
 
 		HashMap<String, String> store = new HashMap<String, String>();
 		String line = null;
-		InputStream inputStream= this.getClass().getClassLoader().getResourceAsStream("assets/"+filename);
-		BufferedReader bReader = new BufferedReader(
-				new InputStreamReader(inputStream));
+
+		// Did this to avoid passing around context outside of activities which
+		// can lead to unnecessary complications like memory leak
+		InputStream inputStream = this.getClass().getClassLoader()
+				.getResourceAsStream("assets/" + filename);
+		BufferedReader bReader = new BufferedReader(new InputStreamReader(
+				inputStream));
 		try {
 			while ((line = bReader.readLine()) != null) {
 				String values[] = line.split(",");
 				store.put(values[0], values[1]);
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return store;

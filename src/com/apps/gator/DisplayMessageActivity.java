@@ -33,11 +33,6 @@ public class DisplayMessageActivity extends ActionBarActivity {
 		final Translator translator = Translator.Factory
 				.create(TranslateType.ENGLISH_TO_MALAYALAM);
 		TranslatorResponse response = translator.translate(message);
-		System.out.printf("this is tht oueput",response.getLookupResponse().toString());
-		// // Implement the dictionary to transform the words here.
-		// if (message.equals("today")) {
-		// message = "tomorrow";
-		// }
 		textView.setText(response.getLookupResponse());
 
 		// Set the text view as the activity layout
