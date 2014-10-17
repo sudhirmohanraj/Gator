@@ -1,4 +1,4 @@
-I,njan
+I am good,njan nanayetende
 You,nee
 Yesterday,ennale
 Tommorrow,nale
