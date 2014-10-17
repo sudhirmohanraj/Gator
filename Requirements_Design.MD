@@ -5,7 +5,8 @@
 		
 # TODO
 	How best to implement a one-one mapping of words storage? HashMap or Set? Set would be better since it can reduce the complications
-	of duplicates! But is it costly? yes and performance isnt optimal.(Maybe a tree structure?)
+	of duplicates! But then again Duplicates needs to be allowed since synonyms are possible.
+	But is it costly? yes and performance isnt optimal.(Maybe a tree structure?)
 	Static Storage of 100-1000 words mapping? will it grow? yes! 
 	Read a File or Store Statically? Read file!
 	Should all the data be loaded from the file at start up or look up as necessary? look up as necessary sounds like a better idea!

@@ -1,5 +1,7 @@
 package com.apps.gator.translator;
 
+import android.content.Context;
+
 import com.apps.gator.translator.impl.EnglishToMalayalamTranslator;
 import com.apps.gator.translator.impl.MalayalamToEnglishTranslator;
 import com.apps.gator.translator.impl.TranslatorResponse;

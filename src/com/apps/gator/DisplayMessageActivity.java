@@ -1,5 +1,10 @@
 package com.apps.gator;
 
+import com.apps.gator.translator.Translator;
+import com.apps.gator.translator.Translator.TranslateType;
+import com.apps.gator.translator.impl.EnglishToMalayalamTranslator;
+import com.apps.gator.translator.impl.TranslatorResponse;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -25,11 +30,15 @@ public class DisplayMessageActivity extends ActionBarActivity {
 		TextView textView = new TextView(this);
 		textView.setTextSize(40);
 
-		// Implement the dictionary to transform the words here.
-		if (message.equals("today")) {
-			message = "tomorrow";
-		}
-		textView.setText(message);
+		final Translator translator = Translator.Factory
+				.create(TranslateType.ENGLISH_TO_MALAYALAM);
+		TranslatorResponse response = translator.translate(message);
+		System.out.printf("this is tht oueput",response.getLookupResponse().toString());
+		// // Implement the dictionary to transform the words here.
+		// if (message.equals("today")) {
+		// message = "tomorrow";
+		// }
+		textView.setText(response.getLookupResponse());
 
 		// Set the text view as the activity layout
 		setContentView(textView);
