@@ -28,24 +28,26 @@
 
     <!-- To translate data from English to Malayalam -->
 
-    <Button
-        android:id="@+id/button1"
+    <RadioButton
+        android:id="@+id/Malayalam"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/edit_message"
         android:layout_below="@+id/edit_message"
-        android:layout_marginTop="22dp"
+        android:layout_marginTop="26dp"
+        android:onClick="languageRadioButtonClicked"
         android:text="@string/button_englishToMalayalam" />
 
-    <!-- Button to translate data from Malayalam to English -->
+    <!-- To translate data from Malayalam to English -->
 
-    <Button
-        android:id="@+id/button2"
+    <RadioButton
+        android:id="@+id/English"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/button1"
-        android:layout_below="@+id/button1"
-        android:layout_marginTop="20dp"
+        android:layout_alignLeft="@+id/Malayalam"
+        android:layout_below="@+id/Malayalam"
+        android:layout_marginTop="18dp"
+        android:onClick="languageRadioButtonClicked"
         android:text="@string/button_malayalamToEnglish" />
 
 </RelativeLayout>

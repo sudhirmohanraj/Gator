@@ -1,14 +1,12 @@
 package com.apps.gator;
 
-import com.apps.gator.translator.Translator;
-import com.apps.gator.translator.Translator.TranslateType;
-import com.apps.gator.translator.impl.EnglishToMalayalamTranslator;
-import com.apps.gator.translator.impl.TranslatorResponse;
-
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,11 +14,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.apps.gator.translator.Translator;
+import com.apps.gator.translator.Translator.TranslateType;
+import com.apps.gator.translator.impl.TranslatorResponse;
+
 public class DisplayMessageActivity extends ActionBarActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		// retrieve the shared preferences file which has stored the radio
+		// buttons state information.
+		SharedPreferences prefs = this.getSharedPreferences(
+				MainActivity.PREFS_NAME, Context.MODE_PRIVATE);
 
 		// Get the message from the intent
 		Intent intent = getIntent();
@@ -30,11 +37,31 @@ public class DisplayMessageActivity extends ActionBarActivity {
 		TextView textView = new TextView(this);
 		textView.setTextSize(40);
 
-		final Translator translator = Translator.Factory
-				.create(TranslateType.ENGLISH_TO_MALAYALAM);
-		TranslatorResponse response = translator.translate(message);
-		textView.setText(response.getLookupResponse());
+		// Logic to determine if the user selected to translate from English to
+		// Malayalam or Malayalam to English.
+		if (prefs.getBoolean(MainActivity.RADIO_BUTTON_MALAYALAM, false)) {
+			Log.d("DisplayMessageActivity.onCreate",
+					"Translate to Malayalam was selected.");
+			final Translator translator = Translator.Factory
+					.create(TranslateType.ENGLISH_TO_MALAYALAM);
+			TranslatorResponse response = translator.translate(message);
+			textView.setText(response.getLookupResponse());
+		} else if (prefs.getBoolean(MainActivity.RADIO_BUTTON_ENGLISH, false)) {
+			Log.d("DisplayMessageActivity.onCreate",
+					"Translate to English was selected.");
+			final Translator translator = Translator.Factory
+					.create(TranslateType.MALAYALM_TO_ENGLISH);
+			// TODO still have to implement the below translation
+			// TranslatorResponse response = translator.translate(message);
+			// textView.setText(response.getLookupResponse());
+			textView.setText("this will be implemented as part of Gator-Issue-2");
 
+		}
+		// Just fall back logic to make sure the User experience is not
+		// affected.
+		else {
+			textView.setText("Please select if you would like to translate to Malayalam or English on the Home View");
+		}
 		// Set the text view as the activity layout
 		setContentView(textView);
 	}
