@@ -6,9 +6,9 @@
 # UI
 	Currently only a normal view of taking in an input of one type of word namely english is supported.
 	Want to enhance to provide a home screen with the options of MalayalamToEnglish or EnglishToMalayalam. How to do this?
-		radio button may be? 		
-		check box may be?
-		any other options?
+		radio button may be?  yes went ahead and used radio button.		
+		check box may be? no because radio buttons gave a more user friendly and understanble view.
+		any other options? havent explored not necessary!
 		
 	Once above feature is implemented then based on that call the appropriate translator.
 	
