@@ -7,11 +7,15 @@
     android:paddingRight="16dp"
     tools:context="com.apps.gator.MainActivity" >
 
+    <!-- Takes the input text provided by the user -->
+
     <EditText
         android:id="@+id/edit_message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/edit_message" />
+
+    <!-- To send the data to the translator services. -->
 
     <Button
         android:layout_width="wrap_content"
@@ -21,5 +25,27 @@
         android:layout_marginBottom="32dp"
         android:onClick="sendMessage"
         android:text="@string/button_send" />
+
+    <!-- To translate data from English to Malayalam -->
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/edit_message"
+        android:layout_below="@+id/edit_message"
+        android:layout_marginTop="22dp"
+        android:text="@string/button_englishToMalayalam" />
+
+    <!-- Button to translate data from Malayalam to English -->
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/button1"
+        android:layout_below="@+id/button1"
+        android:layout_marginTop="20dp"
+        android:text="@string/button_malayalamToEnglish" />
 
 </RelativeLayout>

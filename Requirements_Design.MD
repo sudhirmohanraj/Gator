@@ -25,5 +25,8 @@
 	based on that look up different data. 
 	Method to read data from a file. done
 	
+# Miscellaneous TODO
+	Utilize cache to see if you can look up a recently viewed word.
+	
 # Limitations
 	Only can translate one phrase or a word at a time.
