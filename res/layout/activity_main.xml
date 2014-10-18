@@ -1,25 +1,51 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- http://stackoverflow.com/a/8224479/614867 Based on this discussion moving from linear layout to relative layout since i want to use both the horizontal and vertical length of the screen. -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
     tools:context="com.apps.gator.MainActivity" >
-    
-    
-    <EditText android:id="@+id/edit_message"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="@string/edit_message"
-        android:layout_weight="1" />
 
-     <Button
+    <!-- Takes the input text provided by the user -->
+
+    <EditText
+        android:id="@+id/edit_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/edit_message" />
+
+    <!-- To send the data to the translator services. -->
+
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/button_send" 
-        android:onClick="sendMessage"/>
-    
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="32dp"
+        android:onClick="sendMessage"
+        android:text="@string/button_send" />
 
-</LinearLayout>
+    <!-- To translate data from English to Malayalam -->
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/edit_message"
+        android:layout_below="@+id/edit_message"
+        android:layout_marginTop="22dp"
+        android:text="@string/button_englishToMalayalam" />
+
+    <!-- Button to translate data from Malayalam to English -->
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/button1"
+        android:layout_below="@+id/button1"
+        android:layout_marginTop="20dp"
+        android:text="@string/button_malayalamToEnglish" />
+
+</RelativeLayout>
