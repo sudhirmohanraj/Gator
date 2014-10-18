@@ -51,10 +51,8 @@ public class DisplayMessageActivity extends ActionBarActivity {
 					"Translate to English was selected.");
 			final Translator translator = Translator.Factory
 					.create(TranslateType.MALAYALM_TO_ENGLISH);
-			// TODO still have to implement the below translation
-			// TranslatorResponse response = translator.translate(message);
-			// textView.setText(response.getLookupResponse());
-			textView.setText("this will be implemented as part of Gator-Issue-2");
+			TranslatorResponse response = translator.translate(message);
+			textView.setText(response.getLookupResponse());
 
 		}
 		// Just fall back logic to make sure the User experience is not

@@ -3,13 +3,20 @@ package com.apps.gator.translator.impl;
 import java.util.HashMap;
 import java.util.Map;
 
+import android.util.Log;
+
 import com.apps.gator.translator.Translator;
 import com.apps.gator.translator.util.ReadFile;
 
 /**
  * Converts a given word from English to Malayalam.
- * <ol>If a word exists in the look up file {@link #fileName}</ol>
- * <ol>else returns {@link #MESSAGE}</ol>
+ * <ol>
+ * If a word exists in the look up file {@link #fileName}
+ * </ol>
+ * <ol>
+ * else returns {@link #MESSAGE}
+ * </ol>
+ * 
  * @author sudhir mohanraj
  * 
  */
@@ -19,7 +26,7 @@ public class EnglishToMalayalamTranslator implements Translator {
 	public static String MESSAGE = "Sorry the given word could not be translated to Malayalam";
 	public ReadFile readFile = new ReadFile();
 
-	@SuppressWarnings("static-access")
+	
 	@Override
 	public TranslatorResponse translate(String inputText) {
 		HashMap<String, String> result = new HashMap<String, String>();
@@ -39,6 +46,8 @@ public class EnglishToMalayalamTranslator implements Translator {
 		// To handle the case where the given word by the user could not be
 		// found in the data used by the application.
 		if (textFound == false) {
+			Log.d("EnglishToMalayalamTranslator.Translate",
+					"The given english word by the user could not be found.");
 			matchingText = MESSAGE;
 		}
 		TranslatorResponse response = new TranslatorResponse();
