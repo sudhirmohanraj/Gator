@@ -14,7 +14,7 @@ import android.widget.RadioButton;
 
 public class MainActivity extends ActionBarActivity {
 
-	public final static String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
+	public final static String EXTRA_MESSAGE = "com.apps.gator.input";
 	public final static String PREFS_NAME = "Gator_Prefs_File";
 	public final static String RADIO_BUTTON_MALAYALAM = "RADIO_BUTTON_MALAYALAM";
 	public final static String RADIO_BUTTON_ENGLISH = "RADIO_BUTTON_ENGLISH";
@@ -66,7 +66,8 @@ public class MainActivity extends ActionBarActivity {
 		Intent intent = new Intent(this, DisplayMessageActivity.class);
 		EditText editText = (EditText) findViewById(R.id.user_input_edit_message);
 		String message = editText.getText().toString();
-		intent.putExtra(EXTRA_MESSAGE, message);
+		intent.putExtra(EXTRA_MESSAGE, message.trim());
+		Log.d("MainActivity.sendMessage", "The input received is: %s" + message.trim());
 		startActivity(intent);
 	}
 
