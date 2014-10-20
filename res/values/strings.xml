@@ -11,6 +11,7 @@
     <string name="button_send">Translate</string>
     <string name="button_englishToMalayalam">Malayalam</string>
     <string name="button_malayalamToEnglish">English</string>
+    <string name="translate_to_">Translate to:</string>
     
 
 </resources>

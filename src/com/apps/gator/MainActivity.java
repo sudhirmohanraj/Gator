@@ -64,7 +64,7 @@ public class MainActivity extends ActionBarActivity {
 		Log.i("MainActivity.sendMessage()",
 				"Translate fucntionality was called.");
 		Intent intent = new Intent(this, DisplayMessageActivity.class);
-		EditText editText = (EditText) findViewById(R.id.edit_message);
+		EditText editText = (EditText) findViewById(R.id.user_input_edit_message);
 		String message = editText.getText().toString();
 		intent.putExtra(EXTRA_MESSAGE, message);
 		startActivity(intent);
