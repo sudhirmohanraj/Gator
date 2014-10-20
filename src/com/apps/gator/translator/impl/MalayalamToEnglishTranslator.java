@@ -3,7 +3,6 @@ package com.apps.gator.translator.impl;
 import java.util.HashMap;
 import java.util.Map;
 
-import android.content.Context;
 import android.util.Log;
 
 import com.apps.gator.translator.Translator;
