@@ -24,7 +24,7 @@
     <!-- To translate data from English to Malayalam -->
 
     <RadioGroup
-        android:id="@+id/radioGroup1"
+        android:id="@+id/languageSelector"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" >
 
@@ -52,8 +52,8 @@
         android:id="@+id/edit_message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/radioGroup1"
-        android:layout_below="@+id/radioGroup1"
+        android:layout_alignLeft="@+id/languageSelector"
+        android:layout_below="@+id/languageSelector"
         android:layout_marginTop="19dp"
         android:ems="10"
         android:hint="@string/edit_message" >
