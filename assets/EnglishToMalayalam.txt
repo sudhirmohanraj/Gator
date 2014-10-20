@@ -1,4 +1,82 @@
-I am good,njan nanayetende
+I,njan
+She,aval
+He,avan
 You,nee
+Here,eevede
+There,avede
+Where,evede
+All,ellam
+Little,koruchu
 Yesterday,ennale
-Tommorrow,nale
+Tomorrow,nale
+Welcome,swagatham
+Good,nannaye
+Bad,nannala
+Father,accha
+Mother,amma
+hello,Namaste
+Brother,cheta
+Sister,chechi
+Baby,kutty
+Son,putran
+Daughter,putri
+Family,samsaram
+Sing,padu
+Run,odu
+More,jasthi
+Laugh,chiriku
+Marriage,kalyanam
+congratulations,ashamsakal
+Call,vilikku
+cry,charayenu
+Don't Cry,charayaruthu
+Water,vallam
+Fire,thee
+Sky,akasham
+House,veedu
+Listen,keku
+boy,cherkan
+girl,penkutty
+Restroom,shauchalayam
+Don't Run,odarad
+Please,Dayavayi
+Concentrate,shradheku
+ask,apekshikunnu
+affection,sneham
+how are you,ningal engane ende?
+what is your name,ningalude peru enda?
+where are you from,angu evidennanu?
+did you have dinner,bhakshanam kaicho?
+did you have lunch,bhakshanam kaicho?
+did you have dinner,bhakshanam kaicho?
+Do you speak malayalam,ningal malayalam samsarikumo
+Are you married,ningal kalyanam kayecho
+my name is,ende peru?
+sit down,iriku!
+come in,olle varu!
+good morning,suprabhatham!
+good night,subha rathri!
+good evening,subh sandhya!
+please write it down for me,ithu onu ezhuthu kaniku.
+happy journey,subha yathra!
+have a good day,subha dinam!
+I understand,mansalaye!
+I don't understand,mansalayelya!
+Have a nice day,nalla divasam!
+can you please say it again,ene oru vasham kude parayu!
+Excuse Me,kshamikkanam!
+Thank you,upakaram!
+Leave me alone,enne veruthe vedu
+Stop,nirothoo
+Please go forward,mumpottu poku!
+Please listen to me,njan parayunadu keku!
+Happy new Year,nava valsara ashamshakal!
+Happy Easter,easter ashamsakal!
+Happy Christmas,christmas ashamsakal!
+Call the Police,police ne veleku!
+Get well soon,ningal vegam sugamagu!
+Where is the Restroom,shauchalayam evedeyanu?
+I agree,njan samathikunu
+I don't agree,njan samathikelya!
+I Love you,njan nenne premikunnu!
+I don't Love you,njan nenne premikenelya!
