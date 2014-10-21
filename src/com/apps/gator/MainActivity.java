@@ -1,6 +1,8 @@
 package com.apps.gator;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -53,7 +55,6 @@ public class MainActivity extends ActionBarActivity {
 		// Handle presses on the action bar items
 		switch (item.getItemId()) {
 		case R.id.action_about:
-			Toast.makeText(getBaseContext(), "about", Toast.LENGTH_LONG).show();
 			openAbout();
 			return true;
 		case R.id.action_settings:
@@ -64,9 +65,30 @@ public class MainActivity extends ActionBarActivity {
 		}
 	}
 
+	/*
+	 * Open a Custom Dialog that shows basic information about the app.
+	 * <ol>Developer Information</ol> <ol>Licensing Information</ol>
+	 */
 	private void openAbout() {
-		// TODO Auto-generated method stub
-		
+		Log.d("MainActivity.openAbout",
+				"About Option from Overflow Action Menu is Selected.");
+		AlertDialog.Builder alertboxBuilder = new AlertDialog.Builder(this);
+		alertboxBuilder
+				.setMessage("this will eventually have the license file")
+				.setTitle("About Gator-Translator")
+				.setNegativeButton(R.string.action_about,
+						new DialogInterface.OnClickListener() {
+
+							@Override
+							public void onClick(DialogInterface dialog,
+									int which) {
+								// Once the OK button is clicked close the
+								// dialog box.
+								dialog.cancel();
+							}
+						});
+		AlertDialog alertDialog = alertboxBuilder.create();
+		alertDialog.show();
 	}
 
 	private void openSettings() {
