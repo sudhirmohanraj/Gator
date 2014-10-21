@@ -7,7 +7,7 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_display_message">Translation</string>
     <string name="translated_Message">Translated Message!</string>
-    <string name="action_search">search</string>
+    <string name="action_about">About</string>
     <string name="button_send">Translate</string>
     <string name="button_englishToMalayalam">Malayalam</string>
     <string name="button_malayalamToEnglish">English</string>

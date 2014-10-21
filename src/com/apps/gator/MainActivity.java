@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -51,13 +52,25 @@ public class MainActivity extends ActionBarActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// Handle presses on the action bar items
 		switch (item.getItemId()) {
-		case R.id.action_search:
+		case R.id.action_about:
+			Toast.makeText(getBaseContext(), "about", Toast.LENGTH_LONG).show();
+			openAbout();
 			return true;
 		case R.id.action_settings:
+			openSettings();
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
 		}
+	}
+
+	private void openAbout() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void openSettings() {
+		Toast.makeText(getBaseContext(), "about", Toast.LENGTH_LONG).show();
 	}
 
 	public void sendMessage(View view) {
@@ -67,7 +80,8 @@ public class MainActivity extends ActionBarActivity {
 		EditText editText = (EditText) findViewById(R.id.user_input_edit_message);
 		String message = editText.getText().toString();
 		intent.putExtra(EXTRA_MESSAGE, message.trim());
-		Log.d("MainActivity.sendMessage", "The input received is: %s" + message.trim());
+		Log.d("MainActivity.sendMessage",
+				"The input received is: %s" + message.trim());
 		startActivity(intent);
 	}
 
