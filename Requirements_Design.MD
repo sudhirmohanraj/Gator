@@ -12,6 +12,12 @@
 		
 	Once above feature is implemented then based on that call the appropriate translator.
 	
+# Settings TODO
+	Have an option to share the app.(share)
+	Have an option to get information about the app.(about)
+	Have an option to clear the input data on the edit box. (refresh)
+	Have an option to check for updates. (Check for Updates)
+	
 # Services
 	How best to implement a one-one mapping of words storage? HashMap or Set? Set would be better since it can reduce the complications
 	of duplicates! But then again Duplicates needs to be allowed since synonyms are possible. Done Using HashMap
