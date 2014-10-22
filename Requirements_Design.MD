@@ -14,9 +14,10 @@
 	
 # Settings TODO
 	Have an option to share the app.(share)
-	Have an option to get information about the app.(about)
-	Have an option to clear the input data on the edit box. (refresh)
+	Have an option to get information about the app.(about) Done
+	Have an option to clear the input data on the edit box. (refresh) Done
 	Have an option to check for updates. (Check for Updates)
+	On the Display Message Activity have an option to report errors.
 	
 # Services
 	How best to implement a one-one mapping of words storage? HashMap or Set? Set would be better since it can reduce the complications

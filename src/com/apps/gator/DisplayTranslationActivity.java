@@ -18,7 +18,7 @@ import com.apps.gator.translator.Translator;
 import com.apps.gator.translator.Translator.TranslateType;
 import com.apps.gator.translator.impl.TranslatorResponse;
 
-public class DisplayMessageActivity extends ActionBarActivity {
+public class DisplayTranslationActivity extends ActionBarActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -94,7 +94,7 @@ public class DisplayMessageActivity extends ActionBarActivity {
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.activity_display_message,
+			View rootView = inflater.inflate(R.layout.activity_display_translation,
 					container, false);
 			return rootView;
 		}

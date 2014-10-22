@@ -108,7 +108,7 @@ public class MainActivity extends ActionBarActivity {
 
 	/**
 	 * Accepts the input from {@link EditText} view, trims it and sends it to
-	 * {@link DisplayMessageActivity} activity.
+	 * {@link DisplayTranslationActivity} activity.
 	 * 
 	 * @param view
 	 *            current view.
@@ -116,7 +116,7 @@ public class MainActivity extends ActionBarActivity {
 	public void sendMessage(View view) {
 		Log.i("MainActivity.sendMessage()",
 				"Translate fucntionality was called.");
-		Intent intent = new Intent(this, DisplayMessageActivity.class);
+		Intent intent = new Intent(this, DisplayTranslationActivity.class);
 		EditText editText = (EditText) findViewById(R.id.user_input_edit_message);
 		String message = editText.getText().toString();
 		intent.putExtra(EXTRA_MESSAGE, message.trim());
