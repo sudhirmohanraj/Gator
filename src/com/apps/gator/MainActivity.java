@@ -13,7 +13,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.Toast;
 
 import com.apps.gator.translator.util.ReadFile;
 
@@ -59,17 +58,22 @@ public class MainActivity extends ActionBarActivity {
 		case R.id.action_about:
 			openAbout();
 			return true;
-		case R.id.action_settings:
-			openSettings();
+		case R.id.action_refresh:
+			openRefresh();
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
 		}
 	}
 
-	/*
+	/**
 	 * Open a Custom Dialog that shows basic information about the app.
-	 * <ol>Developer Information</ol> <ol>Licensing Information</ol>
+	 * <ol>
+	 * Developer Information
+	 * </ol>
+	 * <ol>
+	 * Licensing Information
+	 * </ol>
 	 */
 	private void openAbout() {
 		Log.d("MainActivity.openAbout",
@@ -94,10 +98,21 @@ public class MainActivity extends ActionBarActivity {
 		alertDialog.show();
 	}
 
-	private void openSettings() {
-		Toast.makeText(getBaseContext(), "about", Toast.LENGTH_LONG).show();
+	/**
+	 * Clears the {@link EditText} which accepts the input from the user.
+	 */
+	private void openRefresh() {
+		EditText editText = (EditText) findViewById(R.id.user_input_edit_message);
+		editText.setText("");
 	}
 
+	/**
+	 * Accepts the input from {@link EditText} view, trims it and sends it to
+	 * {@link DisplayMessageActivity} activity.
+	 * 
+	 * @param view
+	 *            current view.
+	 */
 	public void sendMessage(View view) {
 		Log.i("MainActivity.sendMessage()",
 				"Translate fucntionality was called.");
@@ -110,6 +125,14 @@ public class MainActivity extends ActionBarActivity {
 		startActivity(intent);
 	}
 
+	/**
+	 * Updates {@link SharedPreferences} for the app of whether the
+	 * {@value #RADIO_BUTTON_ENGLISH} or {@value #RADIO_BUTTON_MALAYALAM} is
+	 * selected.
+	 * 
+	 * @param view
+	 *            current view.
+	 */
 	public void languageRadioButtonClicked(View view) {
 		Log.d("MainActivity.languageRadioButtonClicked",
 				"A Language was selected.");
