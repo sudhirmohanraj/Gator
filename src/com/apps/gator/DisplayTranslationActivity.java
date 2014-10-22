@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.apps.gator.translator.Translator;
 import com.apps.gator.translator.Translator.TranslateType;
@@ -77,10 +78,15 @@ public class DisplayTranslationActivity extends ActionBarActivity {
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
-		if (id == R.id.action_settings) {
+		if (id == R.id.action_settings_display_translation) {
+			openReportError();
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	private void openReportError() {
+		Toast.makeText(getBaseContext(), "Report Error", Toast.LENGTH_LONG).show();
 	}
 
 	/**
