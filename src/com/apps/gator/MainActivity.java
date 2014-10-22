@@ -15,6 +15,8 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import com.apps.gator.translator.util.ReadFile;
+
 public class MainActivity extends ActionBarActivity {
 
 	public final static String EXTRA_MESSAGE = "com.apps.gator.input";
@@ -73,8 +75,9 @@ public class MainActivity extends ActionBarActivity {
 		Log.d("MainActivity.openAbout",
 				"About Option from Overflow Action Menu is Selected.");
 		AlertDialog.Builder alertboxBuilder = new AlertDialog.Builder(this);
+		ReadFile readFile = new ReadFile();
 		alertboxBuilder
-				.setMessage("this will eventually have the license file")
+				.setMessage(readFile.read())
 				.setTitle("About Gator-Translator")
 				.setNegativeButton(R.string.action_about,
 						new DialogInterface.OnClickListener() {
@@ -108,7 +111,7 @@ public class MainActivity extends ActionBarActivity {
 	}
 
 	public void languageRadioButtonClicked(View view) {
-		Log.i("MainActivity.languageRadioButtonClicked",
+		Log.d("MainActivity.languageRadioButtonClicked",
 				"A Language was selected.");
 
 		// Is the button now checked?
