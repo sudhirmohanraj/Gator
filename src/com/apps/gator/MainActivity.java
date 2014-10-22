@@ -1,6 +1,8 @@
 package com.apps.gator;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -11,6 +13,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
+
+import com.apps.gator.translator.util.ReadFile;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -51,15 +55,64 @@ public class MainActivity extends ActionBarActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// Handle presses on the action bar items
 		switch (item.getItemId()) {
-		case R.id.action_search:
+		case R.id.action_about:
+			openAbout();
 			return true;
-		case R.id.action_settings:
+		case R.id.action_refresh:
+			openRefresh();
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
 		}
 	}
 
+	/**
+	 * Open a Custom Dialog that shows basic information about the app.
+	 * <ol>
+	 * Developer Information
+	 * </ol>
+	 * <ol>
+	 * Licensing Information
+	 * </ol>
+	 */
+	private void openAbout() {
+		Log.d("MainActivity.openAbout",
+				"About Option from Overflow Action Menu is Selected.");
+		AlertDialog.Builder alertboxBuilder = new AlertDialog.Builder(this);
+		ReadFile readFile = new ReadFile();
+		alertboxBuilder
+				.setMessage(readFile.read())
+				.setTitle("About Gator-Translator")
+				.setNegativeButton(R.string.action_about,
+						new DialogInterface.OnClickListener() {
+
+							@Override
+							public void onClick(DialogInterface dialog,
+									int which) {
+								// Once the OK button is clicked close the
+								// dialog box.
+								dialog.cancel();
+							}
+						});
+		AlertDialog alertDialog = alertboxBuilder.create();
+		alertDialog.show();
+	}
+
+	/**
+	 * Clears the {@link EditText} which accepts the input from the user.
+	 */
+	private void openRefresh() {
+		EditText editText = (EditText) findViewById(R.id.user_input_edit_message);
+		editText.setText("");
+	}
+
+	/**
+	 * Accepts the input from {@link EditText} view, trims it and sends it to
+	 * {@link DisplayMessageActivity} activity.
+	 * 
+	 * @param view
+	 *            current view.
+	 */
 	public void sendMessage(View view) {
 		Log.i("MainActivity.sendMessage()",
 				"Translate fucntionality was called.");
@@ -67,12 +120,21 @@ public class MainActivity extends ActionBarActivity {
 		EditText editText = (EditText) findViewById(R.id.user_input_edit_message);
 		String message = editText.getText().toString();
 		intent.putExtra(EXTRA_MESSAGE, message.trim());
-		Log.d("MainActivity.sendMessage", "The input received is: %s" + message.trim());
+		Log.d("MainActivity.sendMessage",
+				"The input received is: %s" + message.trim());
 		startActivity(intent);
 	}
 
+	/**
+	 * Updates {@link SharedPreferences} for the app of whether the
+	 * {@value #RADIO_BUTTON_ENGLISH} or {@value #RADIO_BUTTON_MALAYALAM} is
+	 * selected.
+	 * 
+	 * @param view
+	 *            current view.
+	 */
 	public void languageRadioButtonClicked(View view) {
-		Log.i("MainActivity.languageRadioButtonClicked",
+		Log.d("MainActivity.languageRadioButtonClicked",
 				"A Language was selected.");
 
 		// Is the button now checked?

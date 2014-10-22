@@ -14,8 +14,10 @@ import java.util.HashMap;
  */
 public class ReadFile {
 
-	public HashMap<String, String> read(String filename) {
+	private final String ABOUT_FILE = "About.txt";
+	private final String LINESEPARATOR = System.getProperty("line.separator");
 
+	public HashMap<String, String> read(String filename) {
 		HashMap<String, String> store = new HashMap<String, String>();
 		String line = null;
 
@@ -35,6 +37,29 @@ public class ReadFile {
 		}
 		return store;
 
+	}
+
+	public String read() {
+
+		StringBuilder stringBuilder = new StringBuilder();
+		String line = null;
+		// Did this to avoid passing around context outside of activities which
+		// can lead to unnecessary complications like memory leak
+		InputStream inputStream = this.getClass().getClassLoader()
+				.getResourceAsStream("assets/" + ABOUT_FILE);
+		BufferedReader bReader = new BufferedReader(new InputStreamReader(
+				inputStream));
+
+		try {
+			while ((line = bReader.readLine()) != null) {
+				// Did this so as to not loose formatting while displaying the
+				// content.
+				stringBuilder.append(line + LINESEPARATOR);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return stringBuilder.toString();
 	}
 
 }
