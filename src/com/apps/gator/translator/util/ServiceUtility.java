@@ -675,40 +675,41 @@ Public License instead of this License.  But first, please read
 <http://www.gnu.org/philosophy/why-not-lgpl.html>.
 
  */
-package com.apps.gator.translator.impl;
+package com.apps.gator.translator.util;
 
-import java.util.HashMap;
+import java.util.Map;
 
-import com.apps.gator.translator.Translator;
+import com.apps.gator.translator.impl.TranslatorResponse;
 
 /**
- * Response for the {@link Translator}
- * <ol>
- * A String containing the translated output.
- * </ol>
+ * Houses Utility methods used by services.
  * 
  * @author sudhir mohanraj
- * 
  */
-public class TranslatorResponse {
-
-	String lookupResponse;
-	HashMap<String, String> lookupResponseMap = new HashMap<String, String>();
-
-	public HashMap<String, String> getLookupResponseMap() {
-		return lookupResponseMap;
+public class ServiceUtility {
+	private final String LINESEPARATOR = System.getProperty("line.separator");
+	/**
+	 * @param response
+	 *            response
+	 *            {@link TranslatorResponse#getLookupResponseArrayList()}
+	 *            populated.
+	 * 
+	 * @return a string containing the translation of individual words.
+	 */
+	public StringBuilder buildIndividualLookupResponse(
+			final TranslatorResponse response) {
+		final StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder
+				.append("Unable to Translate the given Phrase; but we found translation for these words in the phrase:");
+		for (final Map.Entry<String, String> entry : response
+				.getLookupResponseMap().entrySet()) {
+			stringBuilder.append(LINESEPARATOR);
+			stringBuilder.append(LINESEPARATOR);
+			stringBuilder.append(entry.getKey());
+			stringBuilder.append(" translates to ");
+			stringBuilder.append(entry.getValue());
+		}
+		return stringBuilder;
 	}
 
-	public void setLookupResponseMap(
-			final HashMap<String, String> lookupResponseArrayList) {
-		this.lookupResponseMap = lookupResponseArrayList;
-	}
-
-	public void setLookupResponse(final String lookupResponse) {
-		this.lookupResponse = lookupResponse;
-	}
-
-	public String getLookupResponse() {
-		return lookupResponse;
-	}
 }

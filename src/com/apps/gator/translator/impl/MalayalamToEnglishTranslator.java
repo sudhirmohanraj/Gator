@@ -704,12 +704,15 @@ public class MalayalamToEnglishTranslator implements Translator {
 	public ReadFile readFile = new ReadFile();
 
 	@Override
-	public TranslatorResponse translate(String inputText) {
+	public TranslatorResponse translate(final String inputText) {
 		HashMap<String, String> result = new HashMap<String, String>();
+		final HashMap<String, String> outputMap = new HashMap<String, String>();
+		final TranslatorResponse response = new TranslatorResponse();
+
 		Boolean textFound = false;
 		result = readFile.read(fileName);
 		String matchingText = null;
-		for (Map.Entry<String, String> entry : result.entrySet()) {
+		for (final Map.Entry<String, String> entry : result.entrySet()) {
 			// to accommodate for input that can be the same word but might have
 			// a different case for e.g. 'nee' is the same as 'Nee' or any
 			// variation of this. And all of them mean You.
@@ -722,13 +725,33 @@ public class MalayalamToEnglishTranslator implements Translator {
 		// To handle the case where the given word by the user could not be
 		// found in the data used by the application.
 		if (textFound == false) {
+			final String[] inputStringArray = inputText.split(" ");
+
+			for (final String individual_string : inputStringArray) {
+				for (final Map.Entry<String, String> entry : result.entrySet()) {
+					// to accommodate for input that can be the same word but
+					// might have
+					// a different case for e.g. 'nee' is the same as 'Nee' or
+					// any
+					// variation of this. And all of them mean You.
+					if (entry.getKey().equalsIgnoreCase(individual_string)) {
+						matchingText = entry.getValue();
+						outputMap.put(individual_string, matchingText);
+					}
+				}
+			}
+			if (outputMap.size() != 0) {
+				response.setLookupResponseMap(outputMap);
+			}
+		}
+
+		if (outputMap.size() == 0 && textFound == false) {
 			Log.d("MalayalamToEnglishTranslator.Translate",
-					"The given malayalam word by the user could not be found.");
+					"The given malayalam word or phrase by the user could not be found.");
 			matchingText = MESSAGE;
 		}
-		TranslatorResponse response = new TranslatorResponse();
+
 		response.setLookupResponse(matchingText);
 		return response;
 	}
-
 }
