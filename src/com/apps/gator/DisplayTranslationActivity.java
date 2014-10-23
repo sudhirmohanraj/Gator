@@ -86,7 +86,12 @@ public class DisplayTranslationActivity extends ActionBarActivity {
 	}
 
 	private void openReportError() {
-		Toast.makeText(getBaseContext(), "Report Error", Toast.LENGTH_LONG).show();
+		Intent email = new Intent(Intent.ACTION_SEND);
+		email.setType("text/email");
+		email.putExtra(Intent.EXTRA_EMAIL, new String[] { "sudhirayrota@gmail.com" });
+		email.putExtra(Intent.EXTRA_SUBJECT, "Report Error:");
+		email.putExtra(Intent.EXTRA_TEXT, "Dear Gator-Translator Development Team," + "");
+        startActivity(Intent.createChooser(email, "Send Feedback:"));
 	}
 
 	/**
@@ -100,8 +105,8 @@ public class DisplayTranslationActivity extends ActionBarActivity {
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.activity_display_translation,
-					container, false);
+			View rootView = inflater.inflate(
+					R.layout.activity_display_translation, container, false);
 			return rootView;
 		}
 	}
