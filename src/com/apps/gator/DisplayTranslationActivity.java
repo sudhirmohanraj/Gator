@@ -677,8 +677,6 @@ Public License instead of this License.  But first, please read
  */
 package com.apps.gator;
 
-import java.util.Map;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -696,13 +694,15 @@ import android.widget.TextView;
 import com.apps.gator.translator.Translator;
 import com.apps.gator.translator.Translator.TranslateType;
 import com.apps.gator.translator.impl.TranslatorResponse;
+import com.apps.gator.translator.util.ServiceUtility;
 
 public class DisplayTranslationActivity extends ActionBarActivity {
-	private final String LINESEPARATOR = System.getProperty("line.separator");
+
 	@Override
 	protected void onCreate(final Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
+		final ServiceUtility serviceUtility = new ServiceUtility();
 		// retrieve the shared preferences file which has stored the radio
 		// buttons state information.
 		final SharedPreferences prefs = this.getSharedPreferences(
@@ -715,7 +715,8 @@ public class DisplayTranslationActivity extends ActionBarActivity {
 
 		// Create the text view
 		final TextView textView = new TextView(this);
-		textView.setTextSize(40);
+		// TODO check to see if this can be optimized.
+		// textView.setTextSize(0);
 
 		// Logic to determine if the user selected to translate from English to
 		// Malayalam or Malayalam to English.
@@ -732,30 +733,19 @@ public class DisplayTranslationActivity extends ActionBarActivity {
 			final Translator translator = Translator.Factory
 					.create(TranslateType.MALAYALM_TO_ENGLISH);
 			final TranslatorResponse response = translator.translate(message);
-			if (response.getLookupResponseArrayList().size() != 0) {
-				final StringBuilder stringBuilder = new StringBuilder();
-				stringBuilder
-						.append("Unable to Translate the given Phrase; but we found translation for these words in the phrase:");
-				for (final Map.Entry<String, String> entry : response
-						.getLookupResponseArrayList().entrySet()) {
-					// to accommodate for input that can be the same word but
-					// might have
-					// a different case for e.g. 'nee' is the same as 'Nee' or
-					// any
-					// variation of this. And all of them mean You.
-					stringBuilder.append(LINESEPARATOR);
-					stringBuilder.append(LINESEPARATOR);
-					stringBuilder.append(entry.getKey());
-					stringBuilder.append(" translates to ");
-					stringBuilder.append(entry.getValue());
-				}
-				textView.setText(stringBuilder);
-			} else {
-				textView.setText(response.getLookupResponse());
-			}
 
+			switch (response.getLookupResponseMap().size()) {
+				case 0 :
+					textView.setText(response.getLookupResponse());
+					break;
+				default :
+					final StringBuilder stringBuilder = serviceUtility
+							.buildIndividualLookupResponse(response);
+					textView.setText(stringBuilder);
+					break;
+			}
 		}
-		// Just fall back logic to make sure the User experience is not
+		// Fall back logic to make sure the User experience is not
 		// affected.
 		else {
 			textView.setText("Please select if you would like to translate to Malayalam or English on the Home View");
@@ -763,6 +753,7 @@ public class DisplayTranslationActivity extends ActionBarActivity {
 		// Set the text view as the activity layout
 		setContentView(textView);
 	}
+
 	@Override
 	public boolean onCreateOptionsMenu(final Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.

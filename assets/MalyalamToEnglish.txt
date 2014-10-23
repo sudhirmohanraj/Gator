@@ -16,7 +16,7 @@ nannaye,Good
 nannala,Bad
 accha,Father
 amma,Mother
-hello,Namaste
+namaste,Hello!
 cheta,Brother
 chechi,Sister
 kutty,Baby
@@ -56,7 +56,7 @@ iriku,sit down!
 olle varu,come in!
 suprabhatham,good morning!
 subha rathri,good night!
-subh sandhya,good evening!
+subha sandhya,good evening!
 ithu onu ezhuthu kaniku,please write it down for me.
 subha yathra,happy journey!
 subha dinam,have a good day!

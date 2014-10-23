@@ -741,13 +741,13 @@ public class MalayalamToEnglishTranslator implements Translator {
 				}
 			}
 			if (outputMap.size() != 0) {
-				response.setLookupResponseArrayList(outputMap);
+				response.setLookupResponseMap(outputMap);
 			}
 		}
 
 		if (outputMap.size() == 0 && textFound == false) {
 			Log.d("MalayalamToEnglishTranslator.Translate",
-					"The given malayalam word by the user could not be found.");
+					"The given malayalam word or phrase by the user could not be found.");
 			matchingText = MESSAGE;
 		}
 
