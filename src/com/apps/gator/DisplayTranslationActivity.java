@@ -13,12 +13,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.apps.gator.translator.Translator;
 import com.apps.gator.translator.Translator.TranslateType;
 import com.apps.gator.translator.impl.TranslatorResponse;
 
-public class DisplayMessageActivity extends ActionBarActivity {
+public class DisplayTranslationActivity extends ActionBarActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -77,10 +78,20 @@ public class DisplayMessageActivity extends ActionBarActivity {
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
-		if (id == R.id.action_settings) {
+		if (id == R.id.action_settings_display_translation) {
+			openReportError();
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	private void openReportError() {
+		Intent email = new Intent(Intent.ACTION_SEND);
+		email.setType("text/email");
+		email.putExtra(Intent.EXTRA_EMAIL, new String[] { "sudhirayrota@gmail.com" });
+		email.putExtra(Intent.EXTRA_SUBJECT, "Report Error:");
+		email.putExtra(Intent.EXTRA_TEXT, "Dear Gator-Translator Development Team," + "");
+        startActivity(Intent.createChooser(email, "Send Feedback:"));
 	}
 
 	/**
@@ -94,8 +105,8 @@ public class DisplayMessageActivity extends ActionBarActivity {
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.activity_display_message,
-					container, false);
+			View rootView = inflater.inflate(
+					R.layout.activity_display_translation, container, false);
 			return rootView;
 		}
 	}

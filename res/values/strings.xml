@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- associated with main display -->
     <string name="app_name">Gator-Translator</string>
     <string name="edit_message">Enter a Word or Phrase to be Translated!</string>
     <string name="action_refresh">Refresh</string>
     <string name="title_activity_main">MainActivity</string>
-    <string name="title_activity_display_message">Translation</string>
+    <string name="title_activity_display_translation">Translation</string>
     <string name="translated_Message">Translated Message!</string>
     <string name="action_about">About</string>
     <string name="button_send">Translate</string>
@@ -13,5 +14,6 @@
     <string name="button_malayalamToEnglish">English</string>
     <string name="translate_to_">Translate to:</string>
     
-
+	<!-- associated with translation display -->
+	<string name="action_report_error_display_translation">Report Error</string>
 </resources>
