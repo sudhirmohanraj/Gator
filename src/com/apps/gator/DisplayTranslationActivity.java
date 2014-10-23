@@ -677,6 +677,8 @@ Public License instead of this License.  But first, please read
  */
 package com.apps.gator;
 
+import java.util.Map;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -696,22 +698,23 @@ import com.apps.gator.translator.Translator.TranslateType;
 import com.apps.gator.translator.impl.TranslatorResponse;
 
 public class DisplayTranslationActivity extends ActionBarActivity {
-
+	private final String LINESEPARATOR = System.getProperty("line.separator");
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(final Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		// retrieve the shared preferences file which has stored the radio
 		// buttons state information.
-		SharedPreferences prefs = this.getSharedPreferences(
+		final SharedPreferences prefs = this.getSharedPreferences(
 				MainActivity.PREFS_NAME, Context.MODE_PRIVATE);
 
 		// Get the message from the intent
-		Intent intent = getIntent();
-		String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+		final Intent intent = getIntent();
+		final String message = intent
+				.getStringExtra(MainActivity.EXTRA_MESSAGE);
 
 		// Create the text view
-		TextView textView = new TextView(this);
+		final TextView textView = new TextView(this);
 		textView.setTextSize(40);
 
 		// Logic to determine if the user selected to translate from English to
@@ -721,15 +724,35 @@ public class DisplayTranslationActivity extends ActionBarActivity {
 					"Translate to Malayalam was selected.");
 			final Translator translator = Translator.Factory
 					.create(TranslateType.ENGLISH_TO_MALAYALAM);
-			TranslatorResponse response = translator.translate(message);
+			final TranslatorResponse response = translator.translate(message);
 			textView.setText(response.getLookupResponse());
 		} else if (prefs.getBoolean(MainActivity.RADIO_BUTTON_ENGLISH, false)) {
 			Log.d("DisplayMessageActivity.onCreate",
 					"Translate to English was selected.");
 			final Translator translator = Translator.Factory
 					.create(TranslateType.MALAYALM_TO_ENGLISH);
-			TranslatorResponse response = translator.translate(message);
-			textView.setText(response.getLookupResponse());
+			final TranslatorResponse response = translator.translate(message);
+			if (response.getLookupResponseArrayList().size() != 0) {
+				final StringBuilder stringBuilder = new StringBuilder();
+				stringBuilder
+						.append("Unable to Translate the given Phrase; but we found translation for these words in the phrase:");
+				for (final Map.Entry<String, String> entry : response
+						.getLookupResponseArrayList().entrySet()) {
+					// to accommodate for input that can be the same word but
+					// might have
+					// a different case for e.g. 'nee' is the same as 'Nee' or
+					// any
+					// variation of this. And all of them mean You.
+					stringBuilder.append(LINESEPARATOR);
+					stringBuilder.append(LINESEPARATOR);
+					stringBuilder.append(entry.getKey());
+					stringBuilder.append(" translates to ");
+					stringBuilder.append(entry.getValue());
+				}
+				textView.setText(stringBuilder);
+			} else {
+				textView.setText(response.getLookupResponse());
+			}
 
 		}
 		// Just fall back logic to make sure the User experience is not
@@ -740,20 +763,19 @@ public class DisplayTranslationActivity extends ActionBarActivity {
 		// Set the text view as the activity layout
 		setContentView(textView);
 	}
-
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
+	public boolean onCreateOptionsMenu(final Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.display_message, menu);
 		return true;
 	}
 
 	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
+	public boolean onOptionsItemSelected(final MenuItem item) {
 		// Handle action bar item clicks here. The action bar will
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
+		final int id = item.getItemId();
 		if (id == R.id.action_settings_display_translation) {
 			openReportError();
 			return true;
@@ -762,12 +784,14 @@ public class DisplayTranslationActivity extends ActionBarActivity {
 	}
 
 	private void openReportError() {
-		Intent email = new Intent(Intent.ACTION_SEND);
+		final Intent email = new Intent(Intent.ACTION_SEND);
 		email.setType("text/email");
-		email.putExtra(Intent.EXTRA_EMAIL, new String[] { "sudhirayrota@gmail.com" });
+		email.putExtra(Intent.EXTRA_EMAIL,
+				new String[]{"sudhirayrota@gmail.com"});
 		email.putExtra(Intent.EXTRA_SUBJECT, "Report Error:");
-		email.putExtra(Intent.EXTRA_TEXT, "Dear Gator-Translator Development Team," + "");
-        startActivity(Intent.createChooser(email, "Send Feedback:"));
+		email.putExtra(Intent.EXTRA_TEXT,
+				"Dear Gator-Translator Development Team," + "");
+		startActivity(Intent.createChooser(email, "Send Feedback:"));
 	}
 
 	/**
@@ -779,9 +803,9 @@ public class DisplayTranslationActivity extends ActionBarActivity {
 		}
 
 		@Override
-		public View onCreateView(LayoutInflater inflater, ViewGroup container,
-				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(
+		public View onCreateView(final LayoutInflater inflater,
+				final ViewGroup container, final Bundle savedInstanceState) {
+			final View rootView = inflater.inflate(
 					R.layout.activity_display_translation, container, false);
 			return rootView;
 		}

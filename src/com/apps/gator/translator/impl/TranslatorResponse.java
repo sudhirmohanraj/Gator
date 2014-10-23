@@ -677,6 +677,8 @@ Public License instead of this License.  But first, please read
  */
 package com.apps.gator.translator.impl;
 
+import java.util.HashMap;
+
 import com.apps.gator.translator.Translator;
 
 /**
@@ -691,8 +693,18 @@ import com.apps.gator.translator.Translator;
 public class TranslatorResponse {
 
 	String lookupResponse;
+	HashMap<String, String> lookupResponseArrayList = new HashMap<String, String>();
 
-	public void setLookupResponse(String lookupResponse) {
+	public HashMap<String, String> getLookupResponseArrayList() {
+		return lookupResponseArrayList;
+	}
+
+	public void setLookupResponseArrayList(
+			final HashMap<String, String> lookupResponseArrayList) {
+		this.lookupResponseArrayList = lookupResponseArrayList;
+	}
+
+	public void setLookupResponse(final String lookupResponse) {
 		this.lookupResponse = lookupResponse;
 	}
 
