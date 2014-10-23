@@ -726,7 +726,16 @@ public class DisplayTranslationActivity extends ActionBarActivity {
 			final Translator translator = Translator.Factory
 					.create(TranslateType.ENGLISH_TO_MALAYALAM);
 			final TranslatorResponse response = translator.translate(message);
-			textView.setText(response.getLookupResponse());
+			switch (response.getLookupResponseMap().size()) {
+				case 0 :
+					textView.setText(response.getLookupResponse());
+					break;
+				default :
+					final StringBuilder stringBuilder = serviceUtility
+							.buildIndividualLookupResponse(response);
+					textView.setText(stringBuilder);
+					break;
+			}
 		} else if (prefs.getBoolean(MainActivity.RADIO_BUTTON_ENGLISH, false)) {
 			Log.d("DisplayMessageActivity.onCreate",
 					"Translate to English was selected.");
