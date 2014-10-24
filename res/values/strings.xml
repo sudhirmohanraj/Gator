@@ -13,6 +13,7 @@
     <string name="button_englishToMalayalam">Malayalam</string>
     <string name="button_malayalamToEnglish">English</string>
     <string name="translate_to_">Translate to:</string>
+    <string name="Share">Share</string>
     
 	<!-- associated with translation display -->
 	<string name="action_report_error_display_translation">Report Error</string>
