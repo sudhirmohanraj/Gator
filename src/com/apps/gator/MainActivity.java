@@ -701,7 +701,7 @@ public class MainActivity extends ActionBarActivity {
 	public final static String RADIO_BUTTON_ENGLISH = "RADIO_BUTTON_ENGLISH";
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(final Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
@@ -712,9 +712,9 @@ public class MainActivity extends ActionBarActivity {
 		// Create a shared preference file to store the state of various
 		// variables so that it can be shared throughout the app. Currently only
 		// the two radio buttons state are stored.
-		SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME,
-				Context.MODE_PRIVATE);
-		SharedPreferences.Editor editor = sharedPreferences.edit();
+		final SharedPreferences sharedPreferences = getSharedPreferences(
+				PREFS_NAME, Context.MODE_PRIVATE);
+		final SharedPreferences.Editor editor = sharedPreferences.edit();
 		// by default both radio buttons state is set to false.
 		editor.putBoolean(RADIO_BUTTON_MALAYALAM, false);
 		editor.putBoolean(RADIO_BUTTON_ENGLISH, false);
@@ -722,27 +722,43 @@ public class MainActivity extends ActionBarActivity {
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
+	public boolean onCreateOptionsMenu(final Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
 
 	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
+	public boolean onOptionsItemSelected(final MenuItem item) {
 		// Handle presses on the action bar items
 		switch (item.getItemId()) {
-		case R.id.action_about:
-			openAbout();
-			return true;
-		case R.id.action_refresh:
-			openRefresh();
-			return true;
-		default:
-			return super.onOptionsItemSelected(item);
+			case R.id.action_about :
+				openAbout();
+				return true;
+			case R.id.action_refresh :
+				openRefresh();
+				return true;
+			case R.id.action_share :
+				optionShare();
+				return true;
+			default :
+				return super.onOptionsItemSelected(item);
 		}
 	}
 
+	/**
+	 * Provide the option for the user to share the app.
+	 */
+	private void optionShare() {
+		final Intent intent = new Intent();
+		intent.setType("text/plain");
+		intent.putExtra(Intent.EXTRA_SUBJECT, "Gator Translator");
+		final String share_message = "\nLet me recommend you this application\n\n";
+		// TODO add the application url on here once released.
+		intent.putExtra(Intent.EXTRA_TEXT, share_message);
+		startActivity(Intent.createChooser(intent, "choose one"));
+
+	}
 	/**
 	 * Open a Custom Dialog that shows basic information about the app.
 	 * <ol>
@@ -755,8 +771,9 @@ public class MainActivity extends ActionBarActivity {
 	private void openAbout() {
 		Log.d("MainActivity.openAbout",
 				"About Option from Overflow Action Menu is Selected.");
-		AlertDialog.Builder alertboxBuilder = new AlertDialog.Builder(this);
-		ReadFile readFile = new ReadFile();
+		final AlertDialog.Builder alertboxBuilder = new AlertDialog.Builder(
+				this);
+		final ReadFile readFile = new ReadFile();
 		alertboxBuilder
 				.setMessage(readFile.read())
 				.setTitle("About Gator-Translator")
@@ -764,14 +781,14 @@ public class MainActivity extends ActionBarActivity {
 						new DialogInterface.OnClickListener() {
 
 							@Override
-							public void onClick(DialogInterface dialog,
-									int which) {
+							public void onClick(final DialogInterface dialog,
+									final int which) {
 								// Once the OK button is clicked close the
 								// dialog box.
 								dialog.cancel();
 							}
 						});
-		AlertDialog alertDialog = alertboxBuilder.create();
+		final AlertDialog alertDialog = alertboxBuilder.create();
 		alertDialog.show();
 	}
 
@@ -779,7 +796,7 @@ public class MainActivity extends ActionBarActivity {
 	 * Clears the {@link EditText} which accepts the input from the user.
 	 */
 	private void openRefresh() {
-		EditText editText = (EditText) findViewById(R.id.user_input_edit_message);
+		final EditText editText = (EditText) findViewById(R.id.user_input_edit_message);
 		editText.setText("");
 	}
 
@@ -790,12 +807,12 @@ public class MainActivity extends ActionBarActivity {
 	 * @param view
 	 *            current view.
 	 */
-	public void sendMessage(View view) {
+	public void sendMessage(final View view) {
 		Log.i("MainActivity.sendMessage()",
 				"Translate fucntionality was called.");
-		Intent intent = new Intent(this, DisplayTranslationActivity.class);
-		EditText editText = (EditText) findViewById(R.id.user_input_edit_message);
-		String message = editText.getText().toString();
+		final Intent intent = new Intent(this, DisplayTranslationActivity.class);
+		final EditText editText = (EditText) findViewById(R.id.user_input_edit_message);
+		final String message = editText.getText().toString();
 		intent.putExtra(EXTRA_MESSAGE, message.trim());
 		Log.d("MainActivity.sendMessage",
 				"The input received is: %s" + message.trim());
@@ -810,30 +827,30 @@ public class MainActivity extends ActionBarActivity {
 	 * @param view
 	 *            current view.
 	 */
-	public void languageRadioButtonClicked(View view) {
+	public void languageRadioButtonClicked(final View view) {
 		Log.d("MainActivity.languageRadioButtonClicked",
 				"A Language was selected.");
 
 		// Is the button now checked?
-		boolean checked = ((RadioButton) view).isChecked();
+		final boolean checked = ((RadioButton) view).isChecked();
 
 		// We need an Editor object to make preference changes.
 		// All objects are from android.context.Context
-		SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME,
-				0);
-		SharedPreferences.Editor editor = sharedPreferences.edit();
+		final SharedPreferences sharedPreferences = getSharedPreferences(
+				PREFS_NAME, 0);
+		final SharedPreferences.Editor editor = sharedPreferences.edit();
 
 		switch (view.getId()) {
-		case R.id.Malayalam:
-			if (checked) {
-				editor.putBoolean(RADIO_BUTTON_MALAYALAM, true);
-			}
-			break;
-		case R.id.English:
-			if (checked) {
-				editor.putBoolean(RADIO_BUTTON_ENGLISH, true);
-			}
-			break;
+			case R.id.Malayalam :
+				if (checked) {
+					editor.putBoolean(RADIO_BUTTON_MALAYALAM, true);
+				}
+				break;
+			case R.id.English :
+				if (checked) {
+					editor.putBoolean(RADIO_BUTTON_ENGLISH, true);
+				}
+				break;
 		}
 		editor.commit();
 	}
