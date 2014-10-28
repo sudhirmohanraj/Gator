@@ -715,8 +715,7 @@ public class DisplayTranslationActivity extends ActionBarActivity {
 
 		// Create the text view
 		final TextView textView = new TextView(this);
-		// TODO check to see if this can be optimized.
-		// textView.setTextSize(0);
+		textView.setTextSize(20);
 
 		// Logic to determine if the user selected to translate from English to
 		// Malayalam or Malayalam to English.
@@ -780,18 +779,40 @@ public class DisplayTranslationActivity extends ActionBarActivity {
 			openReportError();
 			return true;
 		}
+		if (id == R.id.action_feedback_display_translation) {
+			openFeedback();
+			return true;
+		}
 		return super.onOptionsItemSelected(item);
 	}
 
+	/**
+	 * Sends an email with a subject of Feedback.
+	 */
+	private void openFeedback() {
+		final Intent email = new Intent(Intent.ACTION_SEND);
+		email.setType("text/email");
+		email.putExtra(Intent.EXTRA_EMAIL,
+				new String[]{"sudhirayrota@gmail.com"});
+		email.putExtra(Intent.EXTRA_SUBJECT, "Feedback:Gator Translator:");
+		email.putExtra(Intent.EXTRA_TEXT,
+				"Dear Gator-Translator Development Team," + "");
+		startActivity(Intent.createChooser(email, "Send Feedback:"));
+
+	}
+
+	/**
+	 * Sends an email with a subject of Report Error.
+	 */
 	private void openReportError() {
 		final Intent email = new Intent(Intent.ACTION_SEND);
 		email.setType("text/email");
 		email.putExtra(Intent.EXTRA_EMAIL,
 				new String[]{"sudhirayrota@gmail.com"});
-		email.putExtra(Intent.EXTRA_SUBJECT, "Report Error:");
+		email.putExtra(Intent.EXTRA_SUBJECT, "Report Error:Gator Translator:");
 		email.putExtra(Intent.EXTRA_TEXT,
 				"Dear Gator-Translator Development Team," + "");
-		startActivity(Intent.createChooser(email, "Send Feedback:"));
+		startActivity(Intent.createChooser(email, "Report Error:"));
 	}
 
 	/**

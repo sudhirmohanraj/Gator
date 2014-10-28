@@ -18,4 +18,6 @@
     
 	<!-- associated with translation display -->
 	<string name="action_report_error_display_translation">Report Error</string>
+    <string name="action_feedback_display_translation">Feedback</string>
+    
 </resources>

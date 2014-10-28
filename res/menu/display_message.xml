@@ -3,10 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.apps.gator.DisplayMessageActivity" >
 
+    <!-- Report Error action -->
     <item
         android:id="@+id/action_settings_display_translation"
         android:orderInCategory="100"
         android:title="@string/action_report_error_display_translation"
+        app:showAsAction="never"/>
+
+    <!-- Feedback to add a word from user action -->
+    <item
+        android:id="@+id/action_feedback_display_translation"
+        android:orderInCategory="100"
+        android:title="@string/action_feedback_display_translation"
         app:showAsAction="never"/>
 
 </menu>
