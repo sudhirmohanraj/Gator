@@ -684,7 +684,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -769,8 +768,6 @@ public class MainActivity extends ActionBarActivity {
 	 * </ol>
 	 */
 	private void openAbout() {
-		Log.d("MainActivity.openAbout",
-				"About Option from Overflow Action Menu is Selected.");
 		final AlertDialog.Builder alertboxBuilder = new AlertDialog.Builder(
 				this);
 		final ReadFile readFile = new ReadFile();
@@ -808,14 +805,10 @@ public class MainActivity extends ActionBarActivity {
 	 *            current view.
 	 */
 	public void sendMessage(final View view) {
-		Log.i("MainActivity.sendMessage()",
-				"Translate fucntionality was called.");
 		final Intent intent = new Intent(this, DisplayTranslationActivity.class);
 		final EditText editText = (EditText) findViewById(R.id.user_input_edit_message);
 		final String message = editText.getText().toString();
 		intent.putExtra(EXTRA_MESSAGE, message.trim());
-		Log.d("MainActivity.sendMessage",
-				"The input received is: %s" + message.trim());
 		startActivity(intent);
 	}
 
@@ -828,9 +821,6 @@ public class MainActivity extends ActionBarActivity {
 	 *            current view.
 	 */
 	public void languageRadioButtonClicked(final View view) {
-		Log.d("MainActivity.languageRadioButtonClicked",
-				"A Language was selected.");
-
 		// Is the button now checked?
 		final boolean checked = ((RadioButton) view).isChecked();
 

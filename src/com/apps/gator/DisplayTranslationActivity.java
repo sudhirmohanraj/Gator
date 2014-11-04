@@ -683,7 +683,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -720,8 +719,6 @@ public class DisplayTranslationActivity extends ActionBarActivity {
 		// Logic to determine if the user selected to translate from English to
 		// Malayalam or Malayalam to English.
 		if (prefs.getBoolean(MainActivity.RADIO_BUTTON_MALAYALAM, false)) {
-			Log.d("DisplayMessageActivity.onCreate",
-					"Translate to Malayalam was selected.");
 			final Translator translator = Translator.Factory
 					.create(TranslateType.ENGLISH_TO_MALAYALAM);
 			final TranslatorResponse response = translator.translate(message);
@@ -736,8 +733,6 @@ public class DisplayTranslationActivity extends ActionBarActivity {
 					break;
 			}
 		} else if (prefs.getBoolean(MainActivity.RADIO_BUTTON_ENGLISH, false)) {
-			Log.d("DisplayMessageActivity.onCreate",
-					"Translate to English was selected.");
 			final Translator translator = Translator.Factory
 					.create(TranslateType.MALAYALM_TO_ENGLISH);
 			final TranslatorResponse response = translator.translate(message);
