@@ -12,3 +12,6 @@ Limitations
 Developed By
 	Sudhir Mohanraj
 	sudhirayrota@gmail.com
+	
+Thanks To:
+    http://romannurik.github.io/AndroidAssetStudio/attribution.html- Helped in creating the icon for the application.

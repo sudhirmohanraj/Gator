@@ -14,10 +14,14 @@
     <string name="button_englishToMalayalam">Malayalam</string>
     <string name="button_malayalamToEnglish">English</string>
     <string name="translate_to_">Translate to:</string>
-    
-    
-	<!-- associated with translation display -->
-	<string name="action_report_error_display_translation">Report Error</string>
+
+    <!-- associated with translation display -->
+    <string name="action_report_error_display_translation">Report Error</string>
     <string name="action_feedback_display_translation">Feedback</string>
-    
+
+    <!-- associated with eula -->
+    <string name="eula_accept">Accept</string>
+    <string name="eula_refuse">Refuse</string>
+    <string name="eula_title">License</string>
+
 </resources>

@@ -680,8 +680,6 @@ package com.apps.gator.translator.impl;
 import java.util.HashMap;
 import java.util.Map;
 
-import android.util.Log;
-
 import com.apps.gator.translator.Translator;
 import com.apps.gator.translator.util.ReadFile;
 
@@ -700,7 +698,7 @@ import com.apps.gator.translator.util.ReadFile;
 public class MalayalamToEnglishTranslator implements Translator {
 
 	public static String fileName = "MalyalamToEnglish.txt";
-	public static String MESSAGE = "Sorry the given word could not be translated to Malayalam";
+	public static String MESSAGE = "Sorry the given word/phrase could not be translated to English";
 	public ReadFile readFile = new ReadFile();
 
 	@Override
@@ -746,8 +744,6 @@ public class MalayalamToEnglishTranslator implements Translator {
 		}
 
 		if (outputMap.size() == 0 && textFound == false) {
-			Log.d("MalayalamToEnglishTranslator.Translate",
-					"The given malayalam word or phrase by the user could not be found.");
 			matchingText = MESSAGE;
 		}
 
