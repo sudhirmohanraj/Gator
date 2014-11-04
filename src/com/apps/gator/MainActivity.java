@@ -690,8 +690,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
 
+import com.apps.eula.Eula;
 import com.apps.gator.translator.util.ReadFile;
-
 public class MainActivity extends ActionBarActivity {
 
 	public final static String EXTRA_MESSAGE = "com.apps.gator.input";
@@ -702,6 +702,7 @@ public class MainActivity extends ActionBarActivity {
 	@Override
 	protected void onCreate(final Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		Eula.show(this);
 		setContentView(R.layout.activity_main);
 
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
