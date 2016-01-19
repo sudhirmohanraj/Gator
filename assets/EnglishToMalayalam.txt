@@ -80,3 +80,6 @@ I agree,njan samathikunu
 I don't agree,njan samathikelya!
 I Love you,njan nenne premikunnu!
 I don't Love you,njan nenne premikenelya!
+Yes,Ade
+No,elleya
+I am good,njan nannayetende
